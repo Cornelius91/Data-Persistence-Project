@@ -10,6 +10,8 @@ public class MainManager : MonoBehaviour
     public int LineCount = 6;
     public Rigidbody Ball;
 
+    public int bestScore;
+    public Text BestScoreText;
     public Text ScoreText;
     public GameObject GameOverText;
     
@@ -66,6 +68,10 @@ public class MainManager : MonoBehaviour
     {
         m_Points += point;
         ScoreText.text = $"Score : {m_Points}";
+
+        UpdateBestScore();
+       
+
     }
 
     public void GameOver()
@@ -73,4 +79,14 @@ public class MainManager : MonoBehaviour
         m_GameOver = true;
         GameOverText.SetActive(true);
     }
+
+    public void UpdateBestScore()
+    {
+        if(m_Points > bestScore)
+        {
+            bestScore = m_Points;
+            BestScoreText.text = bestScore.ToString();
+        }
+    }
+    
 }
